@@ -1,0 +1,16 @@
+@font-face {
+ font-family: "Alkatip Basma Tom";
+ src: local("Alkatip Basma Tom"), url("//image.yorqut.com/alkatipbt.ttf") format("TrueType");
+}
+
+body, div, button, input, textarea, input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  font-family: "Alkatip Basma Tom", "apple-system-font", "Helvetica Neue", sans-serif;
+}
+
+/* @font-face {
+  font-family: "Alkatip Basma Tom";
+  src: local("Alkatip Basma Tom"), url("./alkatipbt.ttf") format("TrueType");
+ }
+ *,body,input,button,select,textarea{
+   font-family: "Alkatip Basma Tom";
+ } */

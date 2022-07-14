@@ -1,0 +1,67 @@
+@import '../styles/ug-font.css';
+
+$body-bg: #cd2c32, #990a10;
+$card-bg: #ffddb0;
+$title-color: #af4035;
+$button-text-color: #fac783;
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, $body-bg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: calc(env(safe-area-inset-bottom))
+}
+.contentCard {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.05);
+    background: $card-bg
+}
+.contentCard .title{
+    color: $title-color;
+    font-size: .7rem;
+}
+.contentCard .content{
+    color: $title-color;
+}
+.button {
+    width: 100%;
+    background: linear-gradient(180deg, $body-bg);
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    color: $button-text-color;
+    font-size: 1rem;
+}
+.full-img {
+  width: 100%;
+  display: block;
+}
+.title {
+  color: $card-bg;
+  font-size: .7rem;
+}
+input[type=number] {
+  width: 100%;
+  height: 40px;
+  font-size: .85rem;
+  box-sizing: border-box;
+  border: 1px solid #9e9e9e;
+  border-radius: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+.m-t-b-10 {
+  margin: 10px 0;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+.text-center {
+    text-align: center;
+}
