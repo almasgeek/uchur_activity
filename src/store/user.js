@@ -1,12 +1,14 @@
 import Cookie from 'js-cookie'
 import { defineStore } from "pinia";
+import { getUserInfoAPI } from '@/api/index';
 
 export const useUserInfoStore = defineStore('userInfo', {
     state: () => {
         return {
-            openid: '123123openid',
-            headimgurl: 'headimgurl',
-            username: 'Almasgeek',
+            userID: 0,
+            openid: '',
+            headimgurl: '',
+            username: '',
             subscribe: false
         }
 
@@ -15,14 +17,20 @@ export const useUserInfoStore = defineStore('userInfo', {
 
     },
     actions: {
-        updateSubscribe(subscribe) {
-            this.subscribe = subscribe
-            console.log(subscribe)
+        updateUserInfo() {
+            if (!this.userID) {
+                getUserInfoAPI().then(({ data }) => {
+                    this.userID = data.id
+                    this.username = data.username
+                    this.headimgurl = data.headimgurl
+                    this.subscribe = data.subscribe
+                })
+            }
         },
         setCookieAuthInfo(openid, cityid) {
+            this.$state.openid = openid
             Cookie.set('_openid', openid)
             Cookie.set('_cityId', cityid)
         }
     }
 })
-

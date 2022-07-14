@@ -4,16 +4,26 @@
     <div class="head">
       <img src="@/assets/images/title.png" class="full-img title">
 
-      <img src="@/assets/images/products.png" class="full-img">
+      <img src="@/assets/images/products.png" class="full-img" style="width: 85%;margin: 0 auto;">
     </div>
 
     <content-card>
       <div class="activity-explain">
         {{$words.activityExplain}}
       </div>
-      <div style="margin-top: 10px;">
-        <button class="button" @click="$router.push({name: 'signup'})">{{$words.signup}}</button>
-        <button class="button" @click="modalShow()">{{$words.signup}}</button>
+      <div style="margin-top: 10px;" v-show="userInfo.userID">
+
+        <div class="text-center">
+          <div style="width: 100px;height: 100px;margin: 0 auto;">
+            <img :src="userInfo.headimgurl" style="width: 100px;height: 100px;margin: 0 auto;border-radius: 10px;">
+          </div>
+          <div style="font-family: auto;font-size: 14px;color: #757575;padding-top: 5px;">{{userInfo.username}}</div>
+        </div>
+        <div class="form">
+          <input v-model="signUp.phone" type="number" pattern="[0-9]*" inputmode="numeric" class="m-t-b-10" :placeholder="$words.cellphonePlaceholder">
+        </div>
+        <button class="button" @click="signUp()">{{$words.signup}}</button>
+        <!-- <button class="button" @click="modalShow()">{{$words.signup}}</button> -->
       </div>
     </content-card>
 
@@ -55,10 +65,15 @@
 <script>
 import contentCard from '@/components/contentCard'
 import { useAppInfo } from '@/store/app';
+import { useUserInfoStore } from '@/store/user'
 
 export default {
   data() {
     return {
+      signup: {
+        userID: 0,
+        phone: null
+      },
       participantList: [
         {headimg: 'http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLCZLsQSJzQPjDkwDP43yCBKswF7HrzJTMqicBiaXeiatD27erUaYiaP4fIr0yqibnnLE5pRvaZa9HaoFtg/132', username: 'Almas', participant_at: '2022-08-12'},
         {headimg: 'http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLCZLsQSJzQPjDkwDP43yCBKswF7HrzJTMqicBiaXeiatD27erUaYiaP4fIr0yqibnnLE5pRvaZa9HaoFtg/132', username: 'Almas', participant_at: '2022-08-12'},
@@ -73,12 +88,23 @@ export default {
         {img: '@/assets/images/gifts/iphone-13.png'},
         {img: '@/assets/images/gifts/iphone-13.png'},
       ],
-      appInfo: useAppInfo()
+      appInfo: useAppInfo(),
+      userInfo: useUserInfoStore(),
     }
+  },
+  created() {
+    this.userInfo.updateUserInfo()
   },
   methods: {
     modalShow() {
       this.appInfo.updateModalStatus()
+    },
+    signUp() {
+      if (!this.userInfo.subscribe) {
+        this.appInfo.updateModalStatus()
+      } else {
+        console.log(this.signUp.phone, 'success signup')
+      }
     }
   },
   components: { contentCard },
@@ -86,7 +112,9 @@ export default {
 </script>
 <style scoped>
 .title {
-  margin-top: 10px;
+  margin: 10px auto 0 auto;
+  width: 95%;
+
 }
 .activity-explain {
   text-align: center;

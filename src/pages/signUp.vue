@@ -4,9 +4,9 @@
     <content-card>
       <div class="text-center">
         <div style="width: 100px;height: 100px;margin: 0 auto;">
-          <img src="http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLCZLsQSJzQPjDkwDP43yCBKswF7HrzJTMqicBiaXeiatD27erUaYiaP4fIr0yqibnnLE5pRvaZa9HaoFtg/132" style="width: 100px;height: 100px;margin: 0 auto;border-radius: 10px;">
+          <img :src="userInfo.headimgurl" style="width: 100px;height: 100px;margin: 0 auto;border-radius: 10px;">
         </div>
-        <div style="font-family: auto;font-size: 14px;color: #757575;padding-top: 5px;">User Name</div>
+        <div style="font-family: auto;font-size: 14px;color: #757575;padding-top: 5px;">{{userInfo.username}}</div>
       </div>
 
       <div class="form">
@@ -53,9 +53,12 @@
 
 <script>
 import contentCard from '../components/contentCard'
+import { useUserInfoStore } from '@/store/user'
+
 export default {
   data () {
     return {
+      userInfo: useUserInfoStore(),
       participantList: [
         {headimg: 'http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLCZLsQSJzQPjDkwDP43yCBKswF7HrzJTMqicBiaXeiatD27erUaYiaP4fIr0yqibnnLE5pRvaZa9HaoFtg/132', username: 'Almas', participant_at: '2022-08-12'},
         {headimg: 'http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLCZLsQSJzQPjDkwDP43yCBKswF7HrzJTMqicBiaXeiatD27erUaYiaP4fIr0yqibnnLE5pRvaZa9HaoFtg/132', username: 'Almas', participant_at: '2022-08-12'},
