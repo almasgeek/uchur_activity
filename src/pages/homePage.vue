@@ -42,7 +42,19 @@
       </content-card>
     </div>
 
-    <div style="margin-top:30px;">
+    <div style="margin-top: 20px">
+      <div class="title" style="font-size: 1rem;text-align: center;">{{$words.explainTitle}}</div>
+      <content-card style="font-size: .8rem;"> 
+        <div>{{$words.explainContentOne}}</div>
+        <div style="margin-top: 20px;">{{$words.explainContentTwo}}</div>
+        <div style="margin-top: 20px;">{{$words.explainContentThree}}</div>
+        <div style="padding: 10px 0px; width: 10%; margin: 0 auto;">
+          <hr style="border: 1px dashed #af4035; border-radius: 10px;">
+        </div>
+      </content-card>
+    </div>
+
+    <div style="margin-top:20px;">
       <div class="title text-center" style="font-size: 1rem;">{{$words.participant}}</div>
       <content-card style="font-size: .8rem;"> 
         <div v-for="(participant, index) in participantList" :key="index" class="text-center flex-container">
@@ -127,8 +139,8 @@ export default {
 .gift-box {
   width: 95%;
   margin: 0 auto;
-  background: rgb(205 44 50 / 70%);
-  border-radius: 5px;
+  /* background: rgb(205 44 50 / 70%); */
+  /* border-radius: 5px; */
 }
 .flex-container {
   display: flex;

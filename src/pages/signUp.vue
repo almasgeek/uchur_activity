@@ -1,24 +1,10 @@
 <template>
   <div style="margin-top: 30px;">
-    <div class="title">{{$words.signupTitle}}</div>
-    <content-card>
-      <div class="text-center">
-        <div style="width: 100px;height: 100px;margin: 0 auto;">
-          <img :src="userInfo.headimgurl" style="width: 100px;height: 100px;margin: 0 auto;border-radius: 10px;">
-        </div>
-        <div style="font-family: auto;font-size: 14px;color: #757575;padding-top: 5px;">{{userInfo.username}}</div>
-      </div>
-
-      <div class="form">
-        <input type="number" pattern="[0-9]*" inputmode="numeric" class="m-t-b-10" :placeholder="$words.cellphonePlaceholder">
-      </div>
-
-      <button class="button" @click="$router.push({name: 'signup'})">{{$words.submit}}</button>
-    </content-card>
 
     <div class="title" style="font-size: 1rem;margin: 30px 0;" v-show="count">
         <span>{{$words.activityExpiredAt}}</span> <span>{{count}}</span>
     </div>
+
     <div style="margin-top: 0px">
       <div class="title" style="font-size: 1rem;">{{$words.explainTitle}}</div>
       <content-card style="font-size: .8rem;"> 
@@ -30,6 +16,7 @@
         </div>
       </content-card>
     </div>
+
     <div style="margin-top: 20px;">
       <div class="title" style="font-size: 1rem;">{{$words.participant}}</div>
       <content-card style="font-size: .8rem;"> 
@@ -46,7 +33,6 @@
         </div>
       </content-card>
     </div>
-
 
   </div>
 </template>
