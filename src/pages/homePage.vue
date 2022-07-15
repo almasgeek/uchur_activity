@@ -37,13 +37,39 @@
       <div class="m-t-b-10 title text-center" style="font-size: 1rem;">{{$words.giftTitle}}</div>
       <content-card>
         <div style="width: 100%;display: flex; flex-direction: row; flex-wrap: wrap;row-gap: 10px;">
-          <div v-for="(gift, index) in giftList" :key="index" class="gift-flex-item">
+
+          <div class="gift-flex-item">
             <div class="gift-box">
               <div class="text-center">
-                <img src="@/assets/images/gifts/iphone-13.png" class="full-img">
+                <img src="@/assets/images/gifts/iphone-13.png" class="full-img" style="border-radius: 5px;">
               </div>
             </div>
           </div>
+
+          <div class="gift-flex-item">
+            <div class="gift-box">
+              <div class="text-center">
+                <img src="@/assets/images/gifts/iphone-13-pro.png" class="full-img" style="border-radius: 5px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="gift-flex-item">
+            <div class="gift-box">
+              <div class="text-center">
+                <img src="@/assets/images/gifts/iphone-13.png" class="full-img" style="border-radius: 5px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="gift-flex-item">
+            <div class="gift-box">
+              <div class="text-center">
+                <img src="@/assets/images/gifts/iphone-13-pro.png" class="full-img" style="border-radius: 5px;">
+              </div>
+            </div>
+          </div>
+
         </div>
       </content-card>
     </div>

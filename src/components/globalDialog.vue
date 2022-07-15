@@ -26,9 +26,8 @@ export default {
   },
   props: {
     buttonType: {
-      required: true,
+      required: false,
       type: String,
-      default: 'close'
     },
     show: {
       required: true,
