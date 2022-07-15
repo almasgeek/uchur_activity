@@ -3,8 +3,11 @@
     <div class="dialog" v-show="show">
       <div class="content">
         <slot></slot>
-        <div class="close" v-show="closeButton">
+        <div class="close" v-show="buttonType === 'close'">
             <span @click="closeButtonClick">x</span>
+        </div>
+        <div class="understood text-center" v-show="buttonType === 'understood'">
+            <span class="understoodButton" @click="closeButtonClick">{{$words.understood}}</span>
         </div>
       </div>
     </div>
@@ -20,25 +23,40 @@ export default {
     }
   },
   computed: {
-    show () {
-      return this.appInfo.modalShow
-    }
   },
   props: {
-    closeButton: {
-      required: false,
+    buttonType: {
+      required: true,
+      type: String,
+      default: 'close'
+    },
+    show: {
+      required: true,
       type: Boolean,
-      default: true
+      default: false
     }
   },
   methods:{
     closeButtonClick() {
-      this.appInfo.updateModalStatus()
+      this.$emit('closeModal')
     }
   }
 }
 </script>
 <style type="scss" scoped>
+.understood {
+  font-size: .8rem;
+  padding: 10px;
+}
+.understoodButton{
+  color: #545454;
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-align: center;
+  background: rgb(183 183 183 / 38%);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
 .dialog {
   position: fixed;
   top: 0;
@@ -79,13 +97,5 @@ export default {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
-.modal-fade-enter,
-  .modal-fade-leave-to {
-    opacity: 0;
-  }
 
-  .modal-fade-enter-active,
-  .modal-fade-leave-active {
-    transition: opacity .2s ease;
-  }
 </style>

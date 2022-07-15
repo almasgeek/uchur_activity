@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <global-dialog :show="appInfo.modalShow" :close-button="true">
+    <global-dialog :show="appInfo.modalShow" button-type="close" @closeModal="closeModal()">
       <div style="padding: 10px;">
         <img :src="appInfo.qrCode" class="full-img">
         <div class="text-center">{{$words.subscribeRequired}}</div>
@@ -26,6 +26,11 @@ export default {
   },
   mounted() {
     console.log('mounted')
+  },
+  methods: {
+    closeModal() {
+      this.appInfo.updateModalStatus()
+    }
   },
   watch: {
     '$route': {

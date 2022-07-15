@@ -35,3 +35,11 @@ export function get1stHostName() {
     const hostname = window.location.host.split('.')[0]
     return hostname === 'devuchur' ? 'uchur' : hostname
 }
+
+export function validateAllTypePhone(value) {
+    // if (/^1\d{10}$/.test(value)) {
+    if (/^1(3|4|5|6|7|8|9)\d{9}$/.test(value)) {
+        return true
+    }
+    return false
+}

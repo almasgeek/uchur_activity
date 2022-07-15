@@ -1,12 +1,18 @@
 <template>
   <div>
 
+    <global-dialog :show="toastModalShow" button-type="understood" @closeModal="closeToastModal()">
+      <div style="padding: 10px;">
+        <div class="text-center warning">{{$words.warning}}</div>
+        <div class="text-center" style="font-size: .8rem;margin-top: 15px;color: #252525;">{{$words.phoneRequired}}</div>
+      </div>
+    </global-dialog>
+
     <div class="head">
       <img src="@/assets/images/title.png" class="full-img title">
 
       <img src="@/assets/images/products.png" class="full-img" style="width: 85%;margin: 0 auto;">
     </div>
-
     <content-card>
       <div class="activity-explain">
         {{$words.activityExplain}}
@@ -20,7 +26,7 @@
           <div style="font-family: auto;font-size: 14px;color: #757575;padding-top: 5px;">{{userInfo.username}}</div>
         </div>
         <div class="form">
-          <input v-model="signUp.phone" type="number" pattern="[0-9]*" inputmode="numeric" class="m-t-b-10" :placeholder="$words.cellphonePlaceholder">
+          <input style="direction: ltr" v-model="signUp.phone" type="text" pattern="\d*" maxlength="11" inputmode="numeric" class="m-t-b-10" :placeholder="$words.cellphonePlaceholder">
         </div>
         <button class="button" @click="signUp()">{{$words.signup}}</button>
         <!-- <button class="button" @click="modalShow()">{{$words.signup}}</button> -->
@@ -75,9 +81,11 @@
 </template>
 
 <script>
+import globalDialog from '@/components/globalDialog';
 import contentCard from '@/components/contentCard'
 import { useAppInfo } from '@/store/app';
 import { useUserInfoStore } from '@/store/user'
+import { validateAllTypePhone } from '@/utils/index'
 
 export default {
   data() {
@@ -102,6 +110,7 @@ export default {
       ],
       appInfo: useAppInfo(),
       userInfo: useUserInfoStore(),
+      toastModalShow: false
     }
   },
   created() {
@@ -111,18 +120,33 @@ export default {
     modalShow() {
       this.appInfo.updateModalStatus()
     },
+    closeToastModal() {
+      this.toastModalShow = false
+    },
     signUp() {
       if (!this.userInfo.subscribe) {
         this.appInfo.updateModalStatus()
-      } else {
-        console.log(this.signUp.phone, 'success signup')
+        return
       }
+      if (!this.signUp.phone || !validateAllTypePhone(this.signUp.phone)) {
+        this.toastModalShow = true
+        return
+      }
+      console.log('Success signup')
     }
   },
-  components: { contentCard },
+  components: { 
+    contentCard,
+    globalDialog
+  },
 }
 </script>
-<style scoped>
+<style lang="scss">
+@import '@/assets/main.scss';
+
+.warning {
+  color: $title-color;
+}
 .title {
   margin: 10px auto 0 auto;
   width: 95%;

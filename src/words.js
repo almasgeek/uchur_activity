@@ -17,4 +17,7 @@ export default {
   giftTitle: 'مۇكاپات بويۇملىرى',
   close: 'ئۆچۈرۈش',
   subscribeRequired: 'سالونغا كىرىپ داۋاملاشتۇرڭ !',
+  understood: 'بىلدىم',
+  phoneRequired: 'يانفۇن نۇمىرىڭىزنى توغرا كىرگۈزۈڭ .',
+  warning: 'ئەسكەرتىش',
 }
